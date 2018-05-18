@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Books</title>
+    <style type="text/css">
+        .overflow {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<table border="1" cellpadding="10" cellspacing="2" align="center" style="table-layout: fixed;" width="1100">
+    <caption style="font-size: 26px">京东热销书籍排行榜</caption>
+    <colgroup>
+        <col width="53"/>
+        <col width="400"/>
+        <col width="200"/>
+        <col width="180"/>
+        <col width="80"/>
+    </colgroup>
+    <thead>
+    <tr style="background-color: darkseagreen;">
+        <th>序号</th>
+        <th>书名</th>
+        <th>作者</th>
+        <th>出版社</th>
+        <th>价格</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book, bookSta : ${pageInfo.list}" th:style="${bookSta.even} ? 'background-color:aquamarine;' : ''">
+        <td th:text="${bookSta.index + pageInfo.startRow}"></td>
+        <td th:text="${book.name}" th:title="${book.name}" class="overflow"></td>
+        <td th:text="${book.author}" th:title="${book.author}" class="overflow"></td>
+        <td th:text="${book.publisher}" th:title="${book.publisher}" class="overflow"></td>
+        <td th:text="${'￥' + #numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}"
+            style="color: red;font-weight: bold;"></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="5">
+            <a th:href="@{'?page=' + 1}">首页</a>&nbsp;
+            <a th:if="${!pageInfo.isFirstPage}" th:href="@{'?page=' + ${pageInfo.prePage}}">上一页</a>
+            <a th:if="${pageInfo.isFirstPage}">上一页</a>&nbsp;
+            <a th:if="${pageInfo.isLastPage}">下一页</a>
+            <a th:if="${!pageInfo.isLastPage}" th:href="@{'?page=' + ${pageInfo.nextPage}}">下一页</a>&nbsp;
+            <a th:href="@{'?page=' + ${pageInfo.pages}}">末页</a>&nbsp;
+            <span style="float: right">
+                共&nbsp;<span style="color: red;" th:text="${pageInfo.pages}"></span>&nbsp;页,&nbsp;
+                当前第(&nbsp;<span style="color: red;" th:text="${pageInfo.pageNum}"></span>&nbsp;)页
+            </span>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>

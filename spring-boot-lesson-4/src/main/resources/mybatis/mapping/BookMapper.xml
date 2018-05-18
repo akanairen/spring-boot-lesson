@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pb.springbootlesson4.dao.BookMapper">
+
+    <sql id="columns">
+        id, name, author, publisher, price
+    </sql>
+
+    <resultMap id="BookMap" type="com.pb.springbootlesson4.entity.Book">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="author" column="author"/>
+        <result property="publisher" column="publisher"/>
+        <result property="price" column="price" javaType="DECIMAL"/>
+    </resultMap>
+
+    <select id="find" resultMap="BookMap">
+        SELECT
+        <include refid="columns"/>
+        FROM book
+    </select>
+
+
+</mapper>

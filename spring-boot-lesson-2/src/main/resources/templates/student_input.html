@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${student == null} ? '新增' : '修改'"></title>
+</head>
+<body>
+<form th:action="${student == null} ? @{add} : @{edit}" method="post" autocomplete="off">
+    <input type="hidden" name="id" th:value="${student == null} ? '' : ${student.id}"/>
+    <table cellpadding="10">
+        <tbody>
+        <tr>
+            <td>姓名：</td>
+            <td><input type="text" name="name"
+                       th:value="${student == null} ? ${T(java.util.UUID).randomUUID().toString().substring(0, 8)} : ${student.name}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>年龄：</td>
+            <td><input type="number" name="age" step="1" max="99" maxlength="2"
+                       th:value="${student == null} ? ${#numbers.formatInteger((T(java.lang.Math).random() * 100), 2)} : ${student.age}"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交"/>&nbsp;<input type="reset" value="重置"/></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
