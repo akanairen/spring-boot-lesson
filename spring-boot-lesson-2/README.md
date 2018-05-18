@@ -1,0 +1,53 @@
+## Spring Boot Thymeleaf
+
+### 引入 ```pom``` 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+```
+
+### 编写 HTML5 页面
+
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <base th:href="${#httpServletRequest.getContextPath()}"/>
+    <title>Home</title>
+    <style type="text/css">
+        .odd {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<h1>Class: <span th:text="${clazz}"></span></h1>
+<a href="to_add">新增</a>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="3" width="500">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th width="150">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student, studentSta : ${students}" th:class="${studentSta.even} ? '' : 'odd'">
+        <td th:text="${studentSta.index + 1}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.age}"></td>
+        <td align="center"><a th:href="@{'del?id='+ ${student.id}}">删除</a>&nbsp;&nbsp;<a
+                th:href="@{'to_edit?id=' + ${student.id}}">修改</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+```
+
