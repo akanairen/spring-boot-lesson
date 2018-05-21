@@ -25,3 +25,11 @@ Spring Boot Learning（学习）
 
   配置 MyBatis 和使用 PageHelper 插件做分页
 
+### [第五章 Spring Boot 集成 Cache、Redis、MongoDB](https://github.com/akanairen/spring-boot-lessons/tree/master/spring-boot-lesson-5)
+
+- 主要内容
+
+  使用 MongoDB 持久化
+
+  使用 Redis 缓存和持久化
+
