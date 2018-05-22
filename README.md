@@ -33,3 +33,8 @@ Spring Boot Learning（学习）
 
   使用 Redis 缓存和持久化
 
+### [第六章 Spring Boot 集成 RabbitMQ 消息队列](https://github.com/akanairen/spring-boot-lessons/tree/master/spring-boot-lesson-6)
+
+- 主要内容
+
+  使用 RabbitMQ
